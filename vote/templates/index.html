@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote — Cats vs Dogs</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            padding: 3rem 4rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: .5rem;
+            letter-spacing: -0.5px;
+        }
+        p.subtitle {
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+        .buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+        .btn {
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+        }
+        .btn:active { transform: translateY(0); }
+        .btn-cats {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        .btn-dogs {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+        .message {
+            margin-top: 2rem;
+            padding: 1rem 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            font-size: 1.05rem;
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐱 vs 🐶</h1>
+        <p class="subtitle">Cast your vote — Cats or Dogs?</p>
+        <div class="buttons">
+            <form method="POST" action="/vote">
+                <input type="hidden" name="vote" value="cats">
+                <button class="btn btn-cats" type="submit">🐱 Cats</button>
+            </form>
+            <form method="POST" action="/vote">
+                <input type="hidden" name="vote" value="dogs">
+                <button class="btn btn-dogs" type="submit">🐶 Dogs</button>
+            </form>
+        </div>
+        {% if message %}
+        <div class="message">{{ message }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
